@@ -1,21 +1,20 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { URL } from 'src/constants';
 import { IAuthResponse } from 'src/types/types';
 
 const api = axios.create({
   withCredentials: true,
   baseURL: URL
-});
+})
 
-api.interceptors.request.use((config:any)=> {
-  config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
+api.interceptors.request.use((config:AxiosRequestConfig) => {
+  config.headers!.Authorization = `Bearer ${localStorage.getItem('token')}`
   return config;
-});
+})  
 
-api.interceptors.response.use((config) => {
+api.interceptors.response.use((config:AxiosResponse) => {
   return config;
-}, 
-  async (error) => {
+}, async (error) => {
     const originalRequest = error.config;    
     if (error.response.status === 401 && originalRequest && !originalRequest._isRetry) {
       originalRequest._isRetry = true;
