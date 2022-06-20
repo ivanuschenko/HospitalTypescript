@@ -1,9 +1,10 @@
+import { AxiosError } from "axios";
 import { Dispatch } from "redux";
 import { checkValidationLogin, checkValidationPassword } from "src/helper/helperValidate";
 import AuthService from "src/services/AuthServices";
 import { UserActionTypes, UserAction } from 'src/store/types'
 
-const sendErrorToSnack = (dispatch: Dispatch<UserAction>, error:any):void => {
+const sendErrorToSnack = (dispatch: Dispatch<UserAction>, error:string | AxiosError):void => {
   if (typeof error === 'string') {
     dispatch({
       type: UserActionTypes.USER_AUTHORIZED_ERROR,
@@ -46,7 +47,7 @@ export const register = (name: string, password: string, confirmPassword: string
       })  
     } 
     catch (e) { 
-      sendErrorToSnack(dispatch, e)     
+      sendErrorToSnack(dispatch, e as AxiosError)     
     }    
   }
 }
@@ -62,7 +63,7 @@ export const login = (name:string, password:string) => {
       })
     }
     catch (e) {
-      sendErrorToSnack(dispatch, e)     
+      sendErrorToSnack(dispatch, e as AxiosError)     
     }
   }
 }
@@ -78,7 +79,7 @@ export const checkauth = () => {
       })
     }
     catch(e) {   
-      sendErrorToSnack(dispatch, e)  
+      sendErrorToSnack(dispatch, e as AxiosError)  
     }
   }
 }
@@ -94,7 +95,7 @@ export const logout = () => {
       })
     }
     catch (e) {
-      sendErrorToSnack(dispatch, e)  
+      sendErrorToSnack(dispatch, e as AxiosError)  
     }
   }
 }
