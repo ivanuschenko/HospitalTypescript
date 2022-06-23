@@ -1,5 +1,5 @@
 export interface ISnackProps {
   snackText: string, 
   openSnack : boolean, 
-  setOpenSnack: (value:boolean) => void
+  setOpenSnack: (value: boolean) => void
 }

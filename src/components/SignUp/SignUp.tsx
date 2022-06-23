@@ -26,7 +26,7 @@ const SignUp: FC = () => {
   }
 
   const handleChange = (key: string, value: string): void => {
-    setNewUser({...newUser, [key]:value});
+    setNewUser({...newUser, [key]: value});
   }
 
   return (    

@@ -8,7 +8,7 @@ const sendErrorToSnack = (dispatch: Dispatch<UserAction>, error: string | AxiosE
   if (typeof error === 'string') {
     dispatch({
       type: UserActionTypes.USER_AUTHORIZED_ERROR,
-      payload: {error: error, openSnack:true}
+      payload: {error: error, openSnack: true}
     })
   } else {
     dispatch({
@@ -19,7 +19,7 @@ const sendErrorToSnack = (dispatch: Dispatch<UserAction>, error: string | AxiosE
   const errorShow = setTimeout(()=> {
     dispatch({
       type: UserActionTypes.USER_ERROR_OPEN_SNACKBAR,
-      payload: {error: '', openSnack:false}
+      payload: {error: '', openSnack: false}
     })
   }, 1000)
   clearTimeout(errorShow);
@@ -79,7 +79,7 @@ export const checkauth = () => {
         payload: true
       })
     }
-    catch(error) {   
+    catch (error) {   
       sendErrorToSnack(dispatch, error as AxiosError)  
     }
   }

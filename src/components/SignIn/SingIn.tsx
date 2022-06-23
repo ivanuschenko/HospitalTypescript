@@ -14,7 +14,7 @@ const SignIn: FC = () => {
     password : ""    
   }); 
   const { login } = useActions();  
-  const authorised =  () : void => {        
+  const authorised = () : void => {        
     const {
       name,
       password      
@@ -23,7 +23,7 @@ const SignIn: FC = () => {
   };
   
   const handleChange = (key: string, value: string): void => {
-    setNewUser({...newUser, [key]:value});
+    setNewUser({...newUser, [key]: value});
   };
 
   return (
@@ -65,7 +65,7 @@ const SignIn: FC = () => {
           </form>
         </div>
       </Main>  
-    <SimpleSnackbar />
+      <SimpleSnackbar />
     </div>
   )
 }

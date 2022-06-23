@@ -7,14 +7,14 @@ export interface IAppointments {
   userID: string  
 }
 export interface PropsOnlyChild {
-  children?: React.ReactNode
+  children: React.ReactNode
 }
 
 export interface ISetComplaint {
-  inputName : string,
+  inputName: string,
   inputDoctor: string,
-  inputData : string,
-  inputComplaint : string
+  inputData: string,
+  inputComplaint: string
 }
 
 export interface IAuthResponse {

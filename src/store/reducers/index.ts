@@ -3,7 +3,7 @@ import { UserReducer }  from './user-reducer';
 
 
 export const rootReducer = combineReducers({
-    user: UserReducer
+  user: UserReducer
         
 })
 
