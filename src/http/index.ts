@@ -7,12 +7,12 @@ const api = axios.create({
   baseURL: URL
 })
 
-api.interceptors.request.use((config:AxiosRequestConfig) => {
+api.interceptors.request.use((config: AxiosRequestConfig) => {
   config.headers!.Authorization = `Bearer ${localStorage.getItem('token')}`
   return config;
 })  
 
-api.interceptors.response.use((config:AxiosResponse) => {
+api.interceptors.response.use((config: AxiosResponse) => {
   return config;
 }, async (error) => {
     const originalRequest = error.config;    

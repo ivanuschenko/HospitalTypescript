@@ -1,9 +1,9 @@
 import { FC } from 'react';
-import { Snackbar } from '@mui/material';
 import { useTypeSelector } from 'src/hooks/useTypeSelector';
+import { Snackbar } from '@mui/material';
 
 const SimpleSnackbar:FC = () => {        
-  const {error, openSnack} = useTypeSelector(state => state.user);
+  const { error, openSnack  } = useTypeSelector(state => state.user);
   
   return (
     <div>      
@@ -12,8 +12,8 @@ const SimpleSnackbar:FC = () => {
           vertical: 'bottom',
           horizontal: 'left',
         }}        
-        open={ openSnack }          
-        message={ error }                 
+        open={openSnack}          
+        message={error}                 
       />  
     </div>
   );

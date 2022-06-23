@@ -1,12 +1,12 @@
-import { useState, useContext, FC } from "react";
-import { Link } from "react-router-dom";
-import Header from "src/components/Header/Header";
-import Main from "src/components/Main/Main";
-import SimpleSnackbar from "src/components/Snack/Snack";
-import { useActions } from "src/hooks/useAction";
-import { IRegistrate } from "src/components/SignUp/type";
-import BodyImg from "src/img/hospital.svg";
-import "./style.scss";
+import { useState, FC } from 'react';
+import { useActions } from 'src/hooks/useAction';
+import { Link } from 'react-router-dom';
+import Header from 'src/components/Header/Header';
+import Main from 'src/components/Main/Main';
+import SimpleSnackbar from 'src/components/Snack/Snack';
+import { IRegistrate } from 'src/components/SignUp/type';
+import BodyImg from 'src/img/hospital.svg';
+import './style.scss';
 
 const SignUp: FC = () => {  
   const [newUser, setNewUser] = useState<IRegistrate>({
@@ -16,7 +16,7 @@ const SignUp: FC = () => {
   });
   const { register } = useActions()
   
-  const createNewPatient = async () : Promise<void> => {    
+  const createNewPatient = () : void => {    
     const {
       name,
       password,
@@ -25,7 +25,7 @@ const SignUp: FC = () => {
     register(name, password, confirmPassword); 
   }
 
-  const handleChange = (key:string, value:string) :void => {
+  const handleChange = (key: string, value: string): void => {
     setNewUser({...newUser, [key]:value});
   }
 
@@ -48,7 +48,7 @@ const SignUp: FC = () => {
                 id="signup-block__input-login"
                 className="signup-block__input"                
                 placeholder="Введите логин"                         
-                onChange={(e) => handleChange("name", e.target.value)}
+                onChange={(e) => handleChange('name', e.target.value)}
               />
             </div>
             <div className="signup-block">
@@ -58,7 +58,7 @@ const SignUp: FC = () => {
                 id="signup-block__input-password"
                 className="signup-block__input"                
                 placeholder="Введите пароль"
-                onChange={(e) => handleChange("password", e.target.value)}
+                onChange={(e) => handleChange('password', e.target.value)}
               />
             </div>
             <div className="signup-block">
@@ -68,19 +68,19 @@ const SignUp: FC = () => {
                 id="signup-block__input-confirmPassword"
                 className="signup-block__input"                
                 placeholder="Повторите пароль" 
-                onChange={(e) => handleChange("confirmPassword", e.target.value)}
+                onChange={(e) => handleChange('confirmPassword', e.target.value)}
               />              
             </div>
             <div className="signup-block">
               <button type="button" className="signup-block__button-registrate" onClick={createNewPatient}>Зарегистрироваться</button>
-              <Link className="signup-block__link-login" to="/signIn">
+              <Link className="signup-block__link-login" to='/signIn'>
                 Войти
               </Link> 
             </div>
           </form>
         </div>
       </Main> 
-      <SimpleSnackbar/>         
+      <SimpleSnackbar />         
     </div>
   )
 }

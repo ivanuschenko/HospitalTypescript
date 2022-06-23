@@ -4,7 +4,7 @@ import { checkValidationLogin, checkValidationPassword } from "src/helper/helper
 import AuthService from "src/services/AuthServices";
 import { UserActionTypes, UserAction } from 'src/store/types'
 
-const sendErrorToSnack = (dispatch: Dispatch<UserAction>, error:string | AxiosError):void => {
+const sendErrorToSnack = (dispatch: Dispatch<UserAction>, error: string | AxiosError): void => {
   if (typeof error === 'string') {
     dispatch({
       type: UserActionTypes.USER_AUTHORIZED_ERROR,
@@ -16,23 +16,24 @@ const sendErrorToSnack = (dispatch: Dispatch<UserAction>, error:string | AxiosEr
       payload: {error: error?.response?.data?.message, openSnack:true}
     })
   } 
-  setTimeout(()=> {
+  const errorShow = setTimeout(()=> {
     dispatch({
       type: UserActionTypes.USER_ERROR_OPEN_SNACKBAR,
       payload: {error: '', openSnack:false}
     })
-  }, 1000) 
+  }, 1000)
+  clearTimeout(errorShow);
 }
 
 export const register = (name: string, password: string, confirmPassword: string) => { 
   return async (dispatch: Dispatch<UserAction>) => {
     if(!checkValidationLogin(name)) {
       sendErrorToSnack(dispatch, 'login should consist min 6 letters')
-      return
+      return;
     }
     if(!checkValidationPassword(password)){
       sendErrorToSnack(dispatch, 'password should consist min 6 numbers and 1 letter')
-      return
+      return;
     }
     if (password !== confirmPassword) {
         sendErrorToSnack(dispatch, 'Password and confirm pasword are different!');      
@@ -46,13 +47,13 @@ export const register = (name: string, password: string, confirmPassword: string
         payload: true
       })  
     } 
-    catch (e) { 
-      sendErrorToSnack(dispatch, e as AxiosError)     
+    catch (error) { 
+      sendErrorToSnack(dispatch, error as AxiosError)     
     }    
   }
 }
 
-export const login = (name:string, password:string) => {
+export const login = (name: string, password: string) => {
   return async (dispatch: Dispatch<UserAction>) => {
     try {      
       const response = await AuthService.signIn(name, password);
@@ -62,8 +63,8 @@ export const login = (name:string, password:string) => {
         payload: true
       })
     }
-    catch (e) {
-      sendErrorToSnack(dispatch, e as AxiosError)     
+    catch (error) {
+      sendErrorToSnack(dispatch, error as AxiosError)     
     }
   }
 }
@@ -78,8 +79,8 @@ export const checkauth = () => {
         payload: true
       })
     }
-    catch(e) {   
-      sendErrorToSnack(dispatch, e as AxiosError)  
+    catch(error) {   
+      sendErrorToSnack(dispatch, error as AxiosError)  
     }
   }
 }
@@ -94,8 +95,8 @@ export const logout = () => {
         payload: false
       })
     }
-    catch (e) {
-      sendErrorToSnack(dispatch, e as AxiosError)  
+    catch (error) {
+      sendErrorToSnack(dispatch, error as AxiosError)  
     }
   }
 }

@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
+import { useTypeSelector } from './hooks/useTypeSelector';
+import { useActions } from './hooks/useAction';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import SignIn from 'src/components/SignIn/SingIn'
 import SignUp from 'src/components/SignUp/SignUp';
 import './app.scss';
-import { useTypeSelector } from './hooks/useTypeSelector';
-import { useActions } from './hooks/useAction';
 
-const App: any = () => {
-  const {isAuth} = useTypeSelector(state => state.user) 
-  const {checkauth} = useActions();
+const App = () => {
+  const { isAuth } = useTypeSelector(state => state.user) 
+  const { checkauth } = useActions();
 
   useEffect(() => { 
     checkauth()                
@@ -17,8 +17,8 @@ const App: any = () => {
   if (!isAuth) {       
     return (
       <Routes>        
-        <Route path='/signUp' element={<SignUp/>} />
-        <Route path='/signIn' element={<SignIn/>} />            
+        <Route path='/signUp' element={<SignUp />} />
+        <Route path='/signIn' element={<SignIn />} />            
         <Route path='*' element={<Navigate to='/signIn' />} />               
       </Routes>      
     );

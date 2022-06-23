@@ -1,6 +1,6 @@
 export interface userInitialStateProps {
   isAuth: boolean
-  error?:string
+  error?: string
   openSnack?: boolean
 }
 interface IError {
